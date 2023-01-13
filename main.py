@@ -6,7 +6,9 @@ import json
 
 from utils import save_img, parse_header
 
+# Set tid here
 tid = 34974372
+
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'}
 tmp_res = httpx.get(f"https://bbs.nga.cn/read.php?tid={tid}")
 first_request_time: int = int(time.time())
