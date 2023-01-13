@@ -1,16 +1,16 @@
+import json
+import time
 from math import ceil
 
 import httpx
-import time
-import json
 
-from utils import save_img, parse_header
+from utils import custom_headers, parse_header, save_img
 
 # Set tid here
 tid = 34974372
 
-headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'}
-tmp_res = httpx.get(f"https://bbs.nga.cn/read.php?tid={tid}")
+
+tmp_res = httpx.get(f"https://bbs.nga.cn/read.php?tid={tid}", headers=custom_headers)
 first_request_time: int = int(time.time())
 
 cookies = parse_header(tmp_res.headers, first_request_time)
@@ -18,7 +18,9 @@ time.sleep(3)
 page = 1
 while True:
     res = httpx.get(
-        f"https://bbs.nga.cn/read.php?tid={tid}&page={page}&lite=js", cookies=cookies
+        f"https://bbs.nga.cn/read.php?tid={tid}&page={page}&lite=js",
+        cookies=cookies,
+        headers=custom_headers,
     )
     data = json.loads(res.text[len("window.script_muti_get_var_store=") :])["data"]
 

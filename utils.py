@@ -1,5 +1,10 @@
 import os
+
 import httpx
+
+custom_headers = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+}
 
 
 def save_img(subject, img_base, reply_contains_img):
@@ -9,7 +14,7 @@ def save_img(subject, img_base, reply_contains_img):
         for _, each_content in each["attachs"].items():
             sub = each_content["attachurl"]
             url = f"https://{img_base}/{sub}"
-            r = httpx.get(url)
+            r = httpx.get(url, headers=custom_headers)
             img_name = sub.split("/")[-1]
             img_path = f"content/{base_dir}/{img_name}"
             with open(img_path, "wb") as f:
