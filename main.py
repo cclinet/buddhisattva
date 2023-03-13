@@ -21,11 +21,11 @@ if tid is None:
     print("ERROR!,必须设置pid")
     exit()
 
-img_base_pattern = re.compile(r'"_ATTACH_BASE_VIEW"\:"(.*?)"')
-rows_pattern = re.compile(r'"__ROWS"\:(\d+)')
-rows_per_page_pattern = re.compile(r'"__R__ROWS_PAGE"\:(\d+)')
-sub_urls_pattern = re.compile(r'"attachurl"\:"(.*?)"')
-subject_pattern = re.compile(r'"subject"\:"(.*?)"')
+img_base_pattern = re.compile(r'"_ATTACH_BASE_VIEW":"(.*?)"')
+rows_pattern = re.compile(r'"__ROWS":(\d+)')
+rows_per_page_pattern = re.compile(r'"__R__ROWS_PAGE":(\d+)')
+sub_urls_pattern = re.compile(r'"attachurl":"(.*?)"')
+subject_pattern = re.compile(r'"subject":"(.*?)"')
 
 tmp_res = httpx.get(f"https://bbs.nga.cn/read.php?tid={tid}", headers=custom_headers)
 first_request_time: int = int(time.time())
