@@ -15,12 +15,14 @@ pip install httpx==0.23
 使用命令行
 
 ```bash
+cd buddhisattva
 python main.py [tid]
 ```
 
 例如
 
 ```bash
+cd buddhisattva
 python main.py 35383082
 ```
 
